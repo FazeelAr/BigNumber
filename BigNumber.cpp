@@ -1,7 +1,6 @@
 #include"BigNumber.h"
 BigNumber BigNumber::operator = (const BigNumber& other)
 {
-	cout << "\nassignment:";
 	if (this == &other)
 	{
 		return*this;
@@ -19,12 +18,10 @@ BigNumber BigNumber::operator = (const BigNumber& other)
 		number[i] = other.number[i];
 	}
 	number[numberLength] = '\0';
-	//cout << "\nreturn";
 	return*this;
 }
 BigNumber BigNumber::operator / (const BigNumber& other)const
 {
-	cout << "kgdfjuk";
 	this->print();
 	BigNumber div{ *this }, count{"0"};
 	div.print();
@@ -45,31 +42,6 @@ BigNumber BigNumber::operator % (const BigNumber& other)const
 	}
 	return div;
 }
-//BigNumber BigNumber::operator = (BigNumber&& other)
-//{
-//	cout << "\nMOVE::assignment::NUM";
-//	if (this == &other)
-//	{
-//		return*this;
-//	}
-//	this->~BigNumber();
-//	if (other.number == nullptr || other.number[0] == '\0')
-//	{
-//		cout << "d\n";
-//		return*this;
-//	}
-//	numberLength = getStringLength(other.number);
-//	number = new char[numberLength + 1];
-//	for (int i = 0; i < numberLength; i++)
-//	{
-//		number[i] = other.number[i];
-//	}
-//	number[numberLength] = '\0';
-//	other.number = nullptr;
-//	other.numberLength = 0;
-//	//cout << "\nreturn";
-//	return*this;
-//}
 int BigNumber::getStringLength(const char* p)const
 {
 	if (p == nullptr || p[0] == '\0')
@@ -147,61 +119,10 @@ BigNumber BigNumber::operator-(const BigNumber& other)const
 	{
 		l++;
 	}
-	/*if (l == numberLength)
-	{
-		number[1] = '\0';
-	}*/
 	BigNumber diff(result);
 	diff.copyString(diff.number, diff.number + l);
 	delete[] result;
 	return diff;
-	/*BigNumber sub{ "" };
-	sub.numberLength = numberLength;
-	int l1 = numberLength;
-	int otherLength = other.numberLength - 1;
-	int* carry = new int[l1];
-	for (int i = 0; i < l1; i++)
-	{
-		carry[i] = 0;
-	}
-	sub.number = new char[sub.numberLength + 1];
-	sub.number[l1] = '\0';
-	l1 = l1 - 1;
-	while (l1 >= 0)
-	{
-		if (number[l1] < other.number[otherLength])
-		{
-			int i = l1 - 1;
-			while (number[i] == '0')
-			{
-				i--;
-			}
-			while (i != l1)
-			{
-				number[i] = number[i] - 1;
-				i++;
-				carry[i] = 10;
-			}
-		}
-		int temp = carry[l1] + (number[l1] - '0');
-		if (otherLength >= 0)
-		{
-			temp = temp - (other.number[otherLength] - '0');
-		}
-		sub.number[l1] = temp + '0';
-		l1--;
-		otherLength--;
-	}
-	int i = 0;
-	while (number[i] != '\0' && number[i] == '0')
-	{
-		i++;
-	}
-	if (i == numberLength)
-	{
-		number[1] = '\0';
-	}
-	return sub;*/
 }
 BigNumber BigNumber::operator + (const BigNumber& other)const
 {
@@ -232,44 +153,6 @@ BigNumber BigNumber::operator + (const BigNumber& other)const
 	BigNumber sum(result + (k + 1));
 	delete[] result;
 	return sum;
-	/*int l1 = getStringLength(number);
-	int l2 = getStringLength(num.number);
-	int carry = 0;
-	int bigLength = (l1 >= l2) ? l1 : l2;
-	int originaLength = bigLength;
-	BigNumber addNum{ "" };
-	addNum.~BigNumber();
-	addNum.number = new char[bigLength + 1];
-	addNum.number[bigLength] = '\0';
-	bigLength = bigLength - 1;
-	l1 = l1 - 1;
-	l2 = l2 - 1;
-	addNum.numberLength = originaLength;
-	while (bigLength >= 0)
-	{
-		int sum;
-		sum = carry;
-		if (l1 >= 0)
-		{
-			sum = sum + (number[l1] - '0');
-		}
-		if (l2 >= 0)
-		{
-			sum = sum + (num.number[l2] - '0');
-		}
-		addNum.number[bigLength] = (sum % 10) + '0';
-		carry = (sum > 9) ? 1 : 0;
-		l1 = l1 - 1;
-		l2 = l2 - 1;
-		bigLength = bigLength - 1;
-		if (bigLength == -1 && carry == 1)
-		{
-			addNum.reSize(originaLength + 2);
-			addNum.number[0] = '1';
-		}
-	}
-	cout << '\n' << addNum.numberLength;*/
-	//return addNum;
 }
 BigNumber BigNumber::operator++()
 {
@@ -293,7 +176,6 @@ void BigNumber::print()const
 }
 BigNumber::BigNumber()
 {
-	//cout << "\ndefault:";
 	number = nullptr;
 	numberLength = 0;
 }
@@ -311,7 +193,6 @@ void BigNumber::setNumber(const char* num)
 }
 BigNumber::BigNumber(const char* num)
 {
-	//cout << "\nconst char*::NUM:  "<<num;
 	if (num == nullptr || num[0] == '\0')
 	{
 		number = nullptr;
@@ -324,19 +205,10 @@ BigNumber::BigNumber(const char* num)
 }
 BigNumber::~BigNumber()
 {
-	//cout << "\ndestructor::NUM:  ";
 	delete[]number;
 	numberLength = 0;
 	number = nullptr;
 }
-//BigNumber::BigNumber(BigNumber&& other)
-//{
-//	//cout << "\nmove::NUM";
-//	number = other.number;
-//	numberLength = other.numberLength;
-//	other.number = nullptr;
-//	other.numberLength = 0;
-//}
 BigNumber::BigNumber(const BigNumber& bigNum)
 {
 	if (bigNum.number == nullptr || bigNum.number[0] == '\0')
@@ -345,7 +217,6 @@ BigNumber::BigNumber(const BigNumber& bigNum)
 		numberLength = 0;
 		return;
 	}
-	//cout << "\ncopy constructor::NUM ";// << bigNum.number;
 	numberLength = bigNum.numberLength;
 	number = new char[numberLength + 1];
 	int i = 0;
@@ -354,7 +225,6 @@ BigNumber::BigNumber(const BigNumber& bigNum)
 		number[i] = bigNum.number[i];
 	}      
 	number[numberLength] = '\0';
-	//cout << "\ndone";
 }
 int BigNumber::compare(const BigNumber& other)const
 {
@@ -481,4 +351,3 @@ void BigNumber::copyString(char* des, const char* src)
 	}
 	des[i] = '\0';
 }
-BigNumber b{ "6" };
