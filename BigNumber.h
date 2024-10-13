@@ -15,12 +15,10 @@ public:
 	BigNumber();
 	BigNumber(const char* num);
 	BigNumber(const BigNumber& bigNum);
-	//BigNumber(BigNumber&& other);
 	~BigNumber();
 	void print() const;
 	void setNumber(const char* num);
 	BigNumber operator = (const BigNumber& other);
-	//BigNumber operator = (BigNumber&& other);
 	BigNumber operator + (const BigNumber& other)const;
 	BigNumber operator++();
 	BigNumber operator++(int);
