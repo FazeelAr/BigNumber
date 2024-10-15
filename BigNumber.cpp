@@ -22,7 +22,6 @@ BigNumber BigNumber::operator = (const BigNumber& other)
 }
 BigNumber BigNumber::operator / (const BigNumber& other)const
 {
-	this->print();
 	BigNumber div{ *this }, count{"0"};
 	div.print();
 	while (div > "0")
